@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1665486409 source:/root/script/mine/C/Allumette/main.c
+	<stdio.h>
+	<stdlib.h>
+
