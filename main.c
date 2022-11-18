@@ -220,6 +220,8 @@ void jouer_IA_lvl2(){
             if (nbre_b < 5){
                 enlv_b = 4 - enlv_b;
             }
+            else if(nbre_b == 10)
+                enlv_b = 1;
             else if (nbre_b>5 && nbre_b<9){
                 enlv_b = nbre_b -5;
             }
