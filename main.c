@@ -3,8 +3,15 @@
 #include <time.h>
 #include <stdbool.h>
 #include <ctype.h>
-//srand(time(NULL));
 
+
+void red ();
+void fire();
+void c1();
+void reset ();
+void yellow ();
+void green ();
+int check_car(char x);
 void reglejeu();
 void joueur();
 void jouer_IA_lvl1();
@@ -16,12 +23,13 @@ int check(int);
 int affiche_b(int x);
 char joueur1[20];
 char joueur2[20];
-int rep_ad =0;
+char rep_ad =0;
 int niv = 0;
 
 
 
 int main(int argc, char* argv[]){
+srand(time(0));
 int choix = menu();
 if (choix == 1 ){
 	printf("Votre nom \n");
@@ -30,9 +38,9 @@ if (choix == 1 ){
 	printf("1- IA\n");
 	printf("2- Une personne\n");
 	scanf("%d", &rep_ad);
-	while (rep_ad != 1 && rep_ad != 2){
-        printf("Eh joe deconne paaas\n ");
-        scanf ("%d", &rep_ad);
+	while (rep_ad != 1 && rep_ad != 2 || check_car(rep_ad) ){
+        printf("Saisie invalide\n ");
+        scanf ("%c", &rep_ad);
     }
     if (rep_ad == 2){
        	printf("Le nom du de l'adversaire\n");
@@ -45,7 +53,7 @@ if (choix == 1 ){
        	printf("2- Difficile\n");
         scanf("%d", &niv);
         while (niv != 1 && niv != 2){
-            printf("Eh joe deconne paaas\n");
+            printf("Saisie invalide, Veuillez retaper \n");
             scanf ("%d", &niv);
             }
         if (niv == 1){
@@ -78,9 +86,9 @@ int menu(){
     printf("3- Voir les credits \n");
     printf("4- Quitter \n");
     scanf ("%d", &rep);
-    while (rep > 4 || rep == 0){
-    printf("Eh joe deconne pas\n ");
-    scanf ("%d", &rep);
+    while (rep > 4 || rep == 0 || check_car(rep)){
+    printf("Saisie invalide, Veuillez retaper \n ");
+    scanf ("%c", &rep);
     }
     if (rep == 1){
     	return rep;
@@ -125,7 +133,7 @@ void jouer(){
     	}
     	scanf("%d", &enlv_b);
     	while (enlv_b > 3){
-            printf(" Bro tu peux pas retirer plus de 3 Allumettes. Retapez :  ");
+            printf(" Pas plus de 3 Allumettes SVP. Retapez :  ");
             scanf("%d", &enlv_b);
     	}
     	affiche_b(nbre_b - enlv_b);
@@ -133,10 +141,12 @@ void jouer(){
     if (nbre_b<=0){
         wino = 1;
         if (player == 1){
+        green();
         printf("Le gagnant est %s", joueur1);
         }
         if (player == 2){
         printf("Le gagnant est %s", joueur2);
+        reset();
         }
 
     }
@@ -150,9 +160,23 @@ void credits(){
 
 }
 int affiche_b( int x){
+    red();
     for (int i = 0; i < x; i++){
-        printf("|");
+        if (i== x-1)
+            printf (" () \n");
+        else
+            fire();
     }
+    yellow();
+    for(int i =0 ; i < 4; i++){
+        for (int i = 0; i < x; i++){
+            if (i== x-1)
+                printf (" () \n");
+            else
+                c1();
+        }
+    }
+    reset();
     return 0;
 }
 
@@ -168,7 +192,7 @@ void jouer_IA_lvl1(){
         	printf(" A vous de jouer : ");
             scanf("%d", &enlv_b);
             while (enlv_b > 3){
-                printf(" Bro tu peux pas retirer plus de 3 Allumettes. Retapez :  ");
+                printf(" Pas plus de 3 Allumettes SVP. Retapez :  ");
                 scanf("%d", &enlv_b);
                 }
             affiche_b(nbre_b - enlv_b);
@@ -176,8 +200,13 @@ void jouer_IA_lvl1(){
             player = 2;
     	}
     	else if (player == 2){
-            enlv_b = rand()%3 +1;
-            printf(" IA_lvl 1 a retirer : %d\n", enlv_b);
+            if (nbre_b == 1)
+                enlv_b =1;
+            else if ( nbre_b ==1 || nbre_b ==2)
+                enlv_b = rand()%2 +1;
+            else
+                enlv_b = rand()%3 +1;
+            printf("IA_lvl 1 a retirer : %d\n", enlv_b);
             affiche_b(nbre_b - enlv_b);
             nbre_b = nbre_b - enlv_b;
             player =1;
@@ -186,13 +215,18 @@ void jouer_IA_lvl1(){
     if (nbre_b<=0){
         wino = 1;
         if (player == 1){
+        green();
         printf("§§§§§ Vous avez gagné §§§§§" );
-        }
-        if (player == 2){
-        printf("Pas de bol IA a gagné");
+        reset();
         }
 
+        if (player == 2){
+        red();
+        printf("Pas de bol IA a gagné");
+        reset();
         }
+
+    }
     }
 }
 
@@ -209,7 +243,7 @@ void jouer_IA_lvl2(){
         	printf(" A vous de jouer : ");
             scanf("%d", &enlv_b);
             while (enlv_b > 3){
-                printf(" Bro tu peux pas retirer plus de 3 Allumettes. Retapez :  ");
+                printf(" Pas plus de 3 Allumettes SVP. Retapez :  ");
                 scanf("%d", &enlv_b);
                 }
             affiche_b(nbre_b - enlv_b);
@@ -250,10 +284,14 @@ void jouer_IA_lvl2(){
         if (nbre_b<=0){
             wino = 1;
             if (player == 1){
+                green();
                 printf("§§§§§ Vous avez gagné §§§§§" );
+                reset();
             }
         if (player == 2){
+            red();
             printf("Pas de bol IA a gagné");
+            reset();
             }
         }
     }  
@@ -278,3 +316,30 @@ int check(int nb){
     }
     
 }
+int check_car(char x){
+    if isalpha(x){
+        return true;
+    }
+    else
+        return false;
+}
+void red () {
+  printf("\033[1;31m");
+}
+void yellow() {
+  printf("\033[1;33m");
+}
+void green() {
+  printf("\033[1;32m");
+}
+
+void reset () {
+  printf("\033[0m");
+}
+void fire(){
+    printf (" () ");
+}
+void c1(){
+    printf (" [] ");
+}
+
