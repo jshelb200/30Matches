@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include <ctype.h>
 //srand(time(NULL));
+void check( char x)
+
 void reglejeu();
 void joueur();
 void jouer_IA_lvl1();
@@ -220,19 +223,19 @@ void jouer_IA_lvl2(){
             if (nbre_b < 5){
                 enlv_b = 4 - enlv_b;
             }
-            else if(nbre_b > 26 && nbreb < 30 )
+            else if(nbre_b > 26 && nbre_b < 30 )
                 enlv_b = nbre_b - 26;
-            else if(nbre_b > 23 && nbreb < 27 )
+            else if(nbre_b > 23 && nbre_b < 27 )
                 enlv_b = nbre_b - 23;
-           else if(nbre_b > 20 && nbreb < 24 )
+           else if(nbre_b > 20 && nbre_b < 24 )
                 enlv_b = nbre_b - 20;
-            else if(nbre_b > 17 && nbreb < 21 )
+            else if(nbre_b > 17 && nbre_b < 21 )
                 enlv_b = nbre_b - 17;
-            else if(nbre_b > 14 && nbreb < 18 )
+            else if(nbre_b > 14 && nbre_b < 18 )
                 enlv_b = nbre_b - 14;
-            else if(nbre_b > 11 && nbreb < 15 )
+            else if(nbre_b > 11 && nbre_b < 15 )
                 enlv_b = nbre_b - 11;
-            else if(nbre_b > 8 && nbreb < 12 )
+            else if(nbre_b > 8 && nbre_b < 12 )
                 enlv_b = nbre_b - 8;
             else if (nbre_b>5 && nbre_b<9){
                 enlv_b = nbre_b -5;
@@ -276,5 +279,9 @@ int check(int nb){
        return rand()%3 +1;
         
     }
+    void check(input){
+        if (isalpha(variable)) { ... }
+    }
+    
 }
 
