@@ -220,8 +220,20 @@ void jouer_IA_lvl2(){
             if (nbre_b < 5){
                 enlv_b = 4 - enlv_b;
             }
-            else if(nbre_b == 10)
-                enlv_b = 1;
+            else if(nbre_b > 26 && nbreb < 30 )
+                enlv_b = nbre_b - 26;
+            else if(nbre_b > 23 && nbreb < 27 )
+                enlv_b = nbre_b - 23;
+           else if(nbre_b > 20 && nbreb < 24 )
+                enlv_b = nbre_b - 20;
+            else if(nbre_b > 17 && nbreb < 21 )
+                enlv_b = nbre_b - 17;
+            else if(nbre_b > 14 && nbreb < 18 )
+                enlv_b = nbre_b - 14;
+            else if(nbre_b > 11 && nbreb < 15 )
+                enlv_b = nbre_b - 11;
+            else if(nbre_b > 8 && nbreb < 12 )
+                enlv_b = nbre_b - 8;
             else if (nbre_b>5 && nbre_b<9){
                 enlv_b = nbre_b -5;
             }
@@ -250,21 +262,16 @@ void jouer_IA_lvl2(){
 int check(int nb){
     switch (nb)
     {
-    case 11:
-    case 16:
+    case 9:
+    case 12:
+    case 15:
+    case 18:
     case 21:
+    case 24:
+    case 27:
         return 1;
         break;
-    case 12:
-    case 17:
-    case 22:
-        return 2;
-        break;
-    case 13:
-    case 18:
-    case 23:
-        return 3 ;
-        break;
+
     default:
        return rand()%3 +1;
         
