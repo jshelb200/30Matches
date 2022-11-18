@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <ctype.h>
 //srand(time(NULL));
-void check( char x)
 
 void reglejeu();
 void joueur();
@@ -22,8 +21,7 @@ int niv = 0;
 
 
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]){
 int choix = menu();
 if (choix == 1 ){
 	printf("Votre nom \n");
@@ -219,15 +217,13 @@ void jouer_IA_lvl2(){
             player = 2;
     	}
     	else if (player == 2){
-
-            if (nbre_b < 5){
+             if (nbre_b < 5)
                 enlv_b = 4 - enlv_b;
-            }
             else if(nbre_b > 26 && nbre_b < 30 )
                 enlv_b = nbre_b - 26;
             else if(nbre_b > 23 && nbre_b < 27 )
                 enlv_b = nbre_b - 23;
-           else if(nbre_b > 20 && nbre_b < 24 )
+            else if(nbre_b > 20 && nbre_b < 24 )
                 enlv_b = nbre_b - 20;
             else if(nbre_b > 17 && nbre_b < 21 )
                 enlv_b = nbre_b - 17;
@@ -237,29 +233,30 @@ void jouer_IA_lvl2(){
                 enlv_b = nbre_b - 11;
             else if(nbre_b > 8 && nbre_b < 12 )
                 enlv_b = nbre_b - 8;
-            else if (nbre_b>5 && nbre_b<9){
+            else if (nbre_b>5 && nbre_b<9)
                 enlv_b = nbre_b -5;
-            }
-            else 
-                enlv_b = check(nbre_b);          
 
-            printf(" IA_lvl 2 a retirer : %d\n", enlv_b);
-            affiche_b(nbre_b - enlv_b);
-            nbre_b = nbre_b - enlv_b;
-            player =1;
-            }
+        printf(" IA_lvl 2 a retirer : %d\n", enlv_b);
+        affiche_b(nbre_b - enlv_b);
+        nbre_b = nbre_b - enlv_b;
+        player =1;  
 
-    if (nbre_b<=0){
-        wino = 1;
-        if (player == 1){
-        printf("§§§§§ Vous avez gagné §§§§§" );
         }
+                     
+
+
+        
+
+        if (nbre_b<=0){
+            wino = 1;
+            if (player == 1){
+                printf("§§§§§ Vous avez gagné §§§§§" );
+            }
         if (player == 2){
-        printf("Pas de bol IA a gagné");
+            printf("Pas de bol IA a gagné");
+            }
         }
-
-        }
-    }
+    }  
 
 }
 int check(int nb){
@@ -279,9 +276,5 @@ int check(int nb){
        return rand()%3 +1;
         
     }
-    void check(input){
-        if (isalpha(variable)) { ... }
-    }
     
 }
-
