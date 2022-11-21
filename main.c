@@ -171,7 +171,7 @@ int affiche_b( int x){
     for(int i =0 ; i < 4; i++){
         for (int i = 0; i < x; i++){
             if (i== x-1)
-                printf (" () \n");
+                printf (" [] \n");
             else
                 c1();
         }
